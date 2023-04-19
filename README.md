@@ -2,8 +2,8 @@
 
 Team:
 
-- Person 1 - Which microservice?
-- Christopher Roldan - shoes
+Christopher Roldan - shoes
+Andrew Ward - Shoes
 
 ## Design
 
