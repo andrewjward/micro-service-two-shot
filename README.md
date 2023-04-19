@@ -2,8 +2,8 @@
 
 Team:
 
-Christopher Roldan - shoes
-Andrew Ward - Shoes
+Christopher Roldan - Shoes
+Andrew Ward - Hats
 
 ## Design
 
