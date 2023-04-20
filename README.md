@@ -7,7 +7,7 @@ Andrew Ward - Hats
 
 ## Design
 
-We went for a minal design, but used bootstrap in order to maintain the general feeling of wardrobify.
+We went for a minimal design, but used bootstrap in order to maintain the general feeling of wardrobify.
 
 ## Shoes microservice
 
