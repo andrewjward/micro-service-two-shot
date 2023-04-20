@@ -9,7 +9,7 @@ from .models import LocationVO, HatModel
 # Create your views here.
 class LocationVOEncoder(ModelEncoder):
     model = LocationVO
-    properties = ["name", "import_href"]
+    properties = ["import_href", "closet_name", "section_number", "shelf_number"]
 
 
 class HatsEncoder(ModelEncoder):
@@ -20,8 +20,11 @@ class HatsEncoder(ModelEncoder):
         "style_name",
         "color",
         "url",
-        ]
-
+        "location",
+    ]
+    encoders = {
+        "location": LocationVOEncoder(),
+    }
     # def get_extra_data(self, o):
     #     return {"location": o.location.style_name}
 
@@ -50,6 +53,12 @@ def api_list_hats(request, location_vo_id=None):
                 {"message": "Invalid location id"},
                 status=400,
             )
+        hat = HatModel.objects.create(**content)
+        return JsonResponse(
+            hat,
+            encoder=HatsEncoder,
+            safe=False,
+        )
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_hat(request, pk):

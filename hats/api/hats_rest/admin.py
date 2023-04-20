@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import HatModel
+
+
+@admin.register(HatModel)
+class HatModelAdmin(admin.ModelAdmin):
+    pass

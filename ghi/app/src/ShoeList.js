@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import "./index.css";
+import React, { useState, useEffect } from "react";
 
-function ShoeList(props) {
-  const [shoes, setShoes] = useState(props.shoes || []);
+function ShoeList() {
+  const [shoes, setShoes] = useState([]);
+
+  const fetchData = async () => {
+    const fetchurl = `http://localhost:8080/api/shoes/`;
+    const response = await fetch(fetchurl);
+    if (response.ok) {
+      const data = await response.json();
+      setShoes(data.shoes);
+    }
+  };
 
   const handleDelete = async (shoeId) => {
-    const updatedShoes = shoes.filter((shoe) => shoe.id !== shoeId);
-    setShoes(updatedShoes);
+    const deletedurl = `http://localhost:8080/api/shoes/${shoeId}`;
+    const response = await fetch(deletedurl, { method: "DELETE" });
+    fetchData();
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   if (!shoes.length) {
     return <div>No shoes to display</div>;
@@ -31,7 +44,6 @@ function ShoeList(props) {
         </thead>
         <tbody>
           {shoes.map((shoe) => {
-            console.log(shoe);
             return (
               <tr key={shoe.id}>
                 <td>{shoe.manufacturer}</td>

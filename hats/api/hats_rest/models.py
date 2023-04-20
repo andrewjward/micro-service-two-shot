@@ -27,3 +27,6 @@ class HatModel(models.Model):
 
     class Meta:
         ordering = ("fabric", "style_name", "color", "url", "location")
+
+    def get_api_url(self):
+        return reverse("hat")
