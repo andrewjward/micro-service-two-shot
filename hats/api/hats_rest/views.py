@@ -50,6 +50,12 @@ def api_list_hats(request, location_vo_id=None):
                 {"message": "Invalid location id"},
                 status=400,
             )
+        hat = HatModel.objects.create(**content)
+        return JsonResponse(
+            hat,
+            encoder=HatsEncoder,
+            safe=False,
+        )
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_hat(request, pk):
