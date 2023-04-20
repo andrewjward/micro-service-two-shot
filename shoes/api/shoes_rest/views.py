@@ -7,7 +7,8 @@ from .models import BinVO, Shoe
 # Create your views here.
 class BinVoEncoder(ModelEncoder):
     model= BinVO
-    properties= ["import_href", "closet_name", "bin_number"]
+    properties= ["import_href", "closet_name", "bin_number", "bin_size"]
+
 
 class ShoeDetailEncoder(ModelEncoder):
     model= Shoe
@@ -40,8 +41,9 @@ def api_list_shoes(request, bin_vo_id=None):
         )
     else:
         content= json.loads(request.body)
-        import_href = f"/api/bins/{content['bin']}/"
-        bin = BinVO.objects.get(import_href=import_href)
+
+        bin = BinVO.objects.get(import_href=content["bin"])
+        print(content)
         content["bin"]=bin
         shoes= Shoe.objects.create(**content)
         return  JsonResponse(
