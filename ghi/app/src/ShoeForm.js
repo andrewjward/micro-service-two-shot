@@ -29,6 +29,7 @@ function ShoeForm() {
       picture_url: pictureUrl,
       bin,
     };
+    console.log(shoe);
 
     const shoeUrl = `http://localhost:8080/api/shoes/`;
     const fetchConfig = {
@@ -47,6 +48,8 @@ function ShoeForm() {
       setColor("");
       setPictureUrl("");
       setbin([]);
+    } else {
+      console.log("error");
     }
   };
 
@@ -73,6 +76,7 @@ function ShoeForm() {
   const handleChangebin = (event) => {
     const value = event.target.value;
     setbin(value);
+    console.log(value);
   };
 
   return (
